@@ -81,7 +81,7 @@ public  double ll;
 
     public static final HashMap<String, ConstantData> BAY_AREA_LANDMARKS = new HashMap<String, ConstantData>();
     static {
-        BAY_AREA_LANDMARKS.put("home",new ConstantData("1","abcd",12.896926, 77.622730,15));
+        BAY_AREA_LANDMARKS.put("home",new ConstantData("1","abcd",12.896926, 77.622730,40));
 
         BAY_AREA_LANDMARKS.put("block3",new ConstantData("7","abd",12.931893, 77.606396,20));
 
@@ -90,7 +90,7 @@ public  double ll;
         BAY_AREA_LANDMARKS.put("park",new ConstantData("3","abd",12.934890, 77.606192,10));
         BAY_AREA_LANDMARKS.put("central",new ConstantData("4","abd",12.934529, 77.606197,20));
         BAY_AREA_LANDMARKS.put("block1",new ConstantData("5","abd",12.933932, 77.606426,20));
-        BAY_AREA_LANDMARKS.put("block2",new ConstantData("6","abd",12.933357, 77.606238,10));
+        BAY_AREA_LANDMARKS.put("block2",new ConstantData("6","abd",12.933200, 77.606426,40));
 
         BAY_AREA_LANDMARKS.put("block4",new ConstantData("8","abd",12.932131, 77.606000,10));
         BAY_AREA_LANDMARKS.put("block2nd",new ConstantData("9","abd",12.932797, 77.606291,20));

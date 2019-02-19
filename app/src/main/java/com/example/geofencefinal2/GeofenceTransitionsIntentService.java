@@ -2,14 +2,8 @@
 package com.example.geofencefinal2;
 
 import android.app.IntentService;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -46,12 +40,13 @@ public class GeofenceTransitionsIntentService extends IntentService {
             int transaction = geofencingEvent.getGeofenceTransition();
             List<Geofence> geofences = geofencingEvent.getTriggeringGeofences();
             Geofence geofence = geofences.get(0);
-            if (transaction == Geofence.GEOFENCE_TRANSITION_ENTER && geofence.getRequestId().equals(ConstantData.BAY_AREA_LANDMARKS.get("home"))) {
-                Log.d(TAG, "You are inside Stanford University");
+            if (transaction == Geofence.GEOFENCE_TRANSITION_ENTER && geofence.getRequestId().equals(ConstantData.BAY_AREA_LANDMARKS.get("block2"))) {
+                Log.d(TAG, "You are inside Block2");
                 Toast.makeText(getApplicationContext(),"inside",Toast.LENGTH_LONG).show();
-            } else {
-                Log.d(TAG, "You are outside Stanford University");
-            }
+               // Geofence geofence1=geofences.get(1);
+            } else
+
+                Log.d(TAG, "You are outside Block2");
             return;
         }
 
@@ -73,8 +68,16 @@ public class GeofenceTransitionsIntentService extends IntentService {
             );
 
             // Send notification and log the transition details.
-         //   sendNotification(geofenceTransitionDetails);
+            //   sendNotification(geofenceTransitionDetails);
             Log.i(TAG, geofenceTransitionDetails);
+
+
+            if (geofenceTransitionDetails.equals("block2")){
+                Log.d(TAG, "You are inside Block2");
+                Toast.makeText(getApplicationContext(),"entered in block2",Toast.LENGTH_LONG).show();
+
+            }
+
         } else {
             // Log the error.
             Log.e(TAG, getString(R.string.geofence_transition_invalid_type, geofenceTransition));
