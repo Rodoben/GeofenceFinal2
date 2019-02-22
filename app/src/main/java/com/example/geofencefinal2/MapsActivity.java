@@ -11,7 +11,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -37,6 +39,7 @@ import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,7 +55,7 @@ import java.util.Map;
 
 import static com.example.geofencefinal2.ConstantData.BAY_AREA_LANDMARKS;
 
-public class MapsActivity extends FragmentActivity implements SensorEventListener,
+public class MapsActivity extends  FragmentActivity implements SensorEventListener,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ResultCallback<Status>, OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -144,8 +147,22 @@ TextView txt_compass;
         mMap.setMyLocationEnabled(true);
         startgeofencing();
         addMarker();
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria, true);
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        if (location != null) {
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+            LatLng latLng = new LatLng(latitude, longitude);
+            LatLng myPosition = new LatLng(latitude, longitude);
 
 
+            LatLng coordinate = new LatLng(latitude, longitude);
+            CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 19);
+            mMap.animateCamera(yourLocation);
+        }
 
 //startLocationMonitor();
     }
@@ -554,4 +571,8 @@ public void  startgeofencing(){
             mSensorManager.unregisterListener(this, mMagnetometer);
         }
     }
+
+
+
+
 }

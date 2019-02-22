@@ -30,7 +30,6 @@
     <string name="geofence_transition_notification_text">Click notification to return to app</string>
 
 
-
     <string name="pitch">Pitch: %1$.1f °</string>
     <string name="roll">Roll: %1$.1f °</string>
     <string name="screen_rotation_value">Screen rotation: %1$d °</string>
